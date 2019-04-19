@@ -1,4 +1,3 @@
-
 const express	 = require('express'); // npm run dev || npm start
 const app 		 = express();
 const morgan 	 = require('morgan');
@@ -24,7 +23,7 @@ app.use(myConn(mysql, {
 // middlewares
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));// pa que pesque el req.body :/
+app.use(express.urlencoded({extended: false}));// pa que pesque el req.body :/
 app.use('/', require('./routes/customerRoutes'));
 
 // server
