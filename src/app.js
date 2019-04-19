@@ -17,7 +17,7 @@ app.set('PORT', process.env.PORT || 8080);
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));// pa que pesque el req.body :/
-//////app.use('/', require('./routes/index-routes'));
+app.use('/', require('./routes/customerRoutes'));
 
 app.use(myConn(mysql, {
       host: 'localhost'
