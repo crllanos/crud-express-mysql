@@ -13,7 +13,14 @@ controller.list = (req, res) => {
 
 controller.save = (req, res) => {
     console.log(req.body);
-    req.send('ok');
+    req.getConnection((err, conn) => {
+        if(err) res.json(db_err);
+        conn.query("INSERT INTO customers SET ?"
+                 , [req.body]
+                 , (err, customer) => {
+                    res.redirect('/');
+                 });
+    });
 }
 
 module.exports = controller;
