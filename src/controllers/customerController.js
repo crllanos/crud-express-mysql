@@ -1,6 +1,7 @@
 const controller = {}
 
 controller.list = (req, res) => {
+    console.log(res.body);
     req.getConnection((err, conn) =>{
         if(err) res.json(db_err);
         conn.query("SELECT * FROM customers", (db_err, customers)=>{
