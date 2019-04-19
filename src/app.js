@@ -1,9 +1,11 @@
 
-const express	= require('express'); // npm run dev || npm start
-const app 		= express();
-const morgan 	= require('morgan');
-const path 		= require('path');
-const bodyParser= require('body-parser');
+const express	 = require('express'); // npm run dev || npm start
+const app 		 = express();
+const morgan 	 = require('morgan');
+const path 		 = require('path');
+const bodyParser = require('body-parser');
+const mysql		 = require('mysql');
+const myConn	 = require('express-myconnection');
 
 
 // settings
@@ -16,6 +18,15 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));// pa que pesque el req.body :/
 //////app.use('/', require('./routes/index-routes'));
+
+app.use(myConn(mysql, {
+      host: 'localhost'
+    , user: 'root'
+    , password: '123'
+    , port: 3306
+    , database: 'crud-nodejs'
+}, 'single')); // ??
+
 
 // server
 app.listen(app.get('PORT'), () => {
